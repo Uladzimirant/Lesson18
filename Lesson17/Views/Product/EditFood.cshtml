@@ -1,20 +1,20 @@
 ﻿@model Lesson16.Models.Request.FoodDto
 
 @{
-    ViewData["Title"] = "AddFood";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>AddFood</h1>
+<h1>Edit</h1>
 
 <h4>Food</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AddFood">
+        <form asp-action="EditFood">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control"/>
+                <input asp-for="Name" class="form-control" readonly />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -33,16 +33,13 @@
                 <span asp-validation-for="ExpirationTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="List">Back to List</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

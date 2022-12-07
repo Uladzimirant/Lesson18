@@ -5,7 +5,6 @@ namespace Lesson16.Models.Request
 {
     public class ChemicalDto : ProductDto
     {
-        public uint ExpirationTime { get; set; }
         public enum DangerLevelType {
             Safe,
             Slight,

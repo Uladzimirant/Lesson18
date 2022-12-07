@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace Lesson16.Controllers
 {
-    [ApiController]
+    [Controller]
     [Route("[controller]/[action]")]
     public class CostController : Controller
     {
@@ -19,11 +19,11 @@ namespace Lesson16.Controllers
             _log = log;
         }
 
-        [HttpGet("")]
+        [HttpGet]
         public IActionResult Calculate()
         {
             var totalCost = _productBasket.GetFullPrice();
-            return Ok(totalCost);
+            return View(totalCost);
         }
 
         [HttpGet("{type}")]

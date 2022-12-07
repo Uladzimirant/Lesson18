@@ -1,6 +1,8 @@
-﻿using Lesson17.Models.Response;
+﻿using Lesson16.Models.Request;
+using Lesson17.Models.Response;
 using Lesson6.ProductsClassRealization;
 using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 
 namespace Lesson17.Models
 {
@@ -24,5 +26,22 @@ namespace Lesson17.Models
                 null;
             return dto;
         }
+
+        private static T FillInProduct<T>(this T dto, Product o) where T : ProductDto
+        {
+            dto.Name = o.Name;
+            dto.Price = o.Price;
+            dto.Amount = o.Amount;
+            return dto;
+        }
+        public static ProductDto ToInDto(this Product o) => 
+            new ProductDto().FillInProduct(o);
+        public static FoodDto ToInDto(this Food o) =>
+            new FoodDto() { ExpirationTime = o.ExpirationTime }.FillInProduct(o);
+        public static ElectricalApplianceDto ToInDto(this ElectricalAppliance o) =>
+            new ElectricalApplianceDto() { Voltage = o.Voltage, Amperage = o.Amperage, Power = o.Power }.FillInProduct(o);
+        public static ChemicalDto ToInDto(this Chemical o) =>
+            new ChemicalDto() { DangerLevel = Enum.Parse<ChemicalDto.DangerLevelType>(o.DangerLevel.ToString()) }.FillInProduct(o);
+
     }
 }

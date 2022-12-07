@@ -1,0 +1,10 @@
+﻿@model decimal
+
+@{
+    ViewData["Title"] = "Calculate";
+}
+<h3>Price calculated:</h3>
+<h2>Price is @Html.DisplayFor(model => model)</h2>
+
+<a asp-controller="Product" asp-action="List">Back to List</a>
+
