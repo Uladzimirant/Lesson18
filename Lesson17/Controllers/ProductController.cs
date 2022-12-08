@@ -46,7 +46,7 @@ namespace Lesson16.Controllers
             var p = pdto.ToProduct();
             _productBasket.Add(p);
             _log.LogInformation($"Added product: {p}");
-            return Redirect("List");
+            return RedirectToAction("List");
         }
 
         [HttpGet]
@@ -79,7 +79,7 @@ namespace Lesson16.Controllers
         public IActionResult Delete(string itemName)
         {
             if (_productBasket.Remove(itemName)) _log.LogInformation($"Product {itemName} removed");
-            return Redirect("List");
+            return RedirectToAction("List");
         }
 
         [HttpGet]
@@ -109,7 +109,7 @@ namespace Lesson16.Controllers
                 _productBasket.Add(pdto.ToProduct());
                 _log.LogInformation($"Edit product: {p}");
             }
-            return Redirect("List");
+            return RedirectToAction("List");
         }
 
         [HttpPost]
