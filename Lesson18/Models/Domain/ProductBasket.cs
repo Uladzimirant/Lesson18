@@ -34,6 +34,7 @@ namespace Lesson6.ProductsClassRealization
             }
         }
 
+        public int Count() => products.Count;
 
         private static decimal? GetPriceByList(IEnumerable<Product> p)
         {

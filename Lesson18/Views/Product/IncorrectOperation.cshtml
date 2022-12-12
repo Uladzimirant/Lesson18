@@ -1,0 +1,13 @@
+﻿@model Lesson18.Exceptions.IncorrectOperationException
+@{
+    ViewData["Title"] = "Incorrect Operation";
+}
+
+<h1>Sorry!</h1>
+
+<h2>@Html.DisplayFor(e=>e.MessageTitle)</h2>
+
+<p>@Html.DisplayFor(e => e.Message)</p>
+
+<a asp-controller="Product" asp-action="List">Return</a>
+

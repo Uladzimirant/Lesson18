@@ -35,10 +35,10 @@
             @RenderBody()
         </main>
     </div>
-
+    
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - Lesson17
+            &copy; 2022 - Lesson17, Amount of requests: @(Context.Request.Headers.TryGetValue("RequestAmount", out var val) ? val : "Not counting")
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

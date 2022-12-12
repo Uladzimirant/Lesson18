@@ -3,12 +3,15 @@ using Lesson6.ProductsClassRealization;
 using Lesson16.Models.Request;
 using System.Xml.Linq;
 using Lesson17.Models;
+using Lesson18.Exceptions;
+using Lesson18;
 using System.Diagnostics;
 
 namespace Lesson16.Controllers
 {
     [Controller]
     [Route("[controller]/[action]")]
+    [IncorrectOperationExceptionFilter]
     public class ProductController : Controller
     {
         private readonly ILogger<ProductController> _log;
@@ -44,10 +47,13 @@ namespace Lesson16.Controllers
         private IActionResult AddAndRedirect(ProductDto pdto)
         {
             var p = pdto.ToProduct();
+            int maxAmount = 9;
+            if (_productBasket.Count() > maxAmount) throw new IncorrectOperationException(this ,$"{maxAmount} are only allowed", "Max elements reached");
             _productBasket.Add(p);
             _log.LogInformation($"Added product: {p}");
             return RedirectToAction("List");
         }
+
 
         [HttpGet]
         public IActionResult AddGeneral() => View();
@@ -60,7 +66,6 @@ namespace Lesson16.Controllers
 
         [HttpGet]
         public IActionResult AddChemical() => View();
-
 
         [HttpPost]
         public IActionResult AddGeneral(ProductDto p) => AddAndRedirect(p);
@@ -124,10 +129,5 @@ namespace Lesson16.Controllers
         [HttpPost]
         public IActionResult EditChemical(ChemicalDto p) => EditAndRedirect(p);
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

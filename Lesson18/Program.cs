@@ -1,4 +1,5 @@
 using Lesson16;
+using Lesson18;
 
 namespace Lesson17
 {
@@ -32,6 +33,7 @@ namespace Lesson17
 
             app.UseAuthorization();
 
+            app.UseMiddleware<CountMiddleware>();
             app.MapControllers();
 
 
